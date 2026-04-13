@@ -1,0 +1,293 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+.header {
+  height: 60px;
+  background: #0f172a;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  font-size: 26px;
+  font-weight: bold;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.main {
+  margin-top: 60px;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  width: 150px;
+  background: #1e293b;
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - 60px);
+  top: 60px;
+  left: 0;
+}
+
+.main {
+  margin-left: 150px;
+}
+
+/* Nav positioning */
+.nav {
+  width: 100%;
+  padding-top: 20%;
+}
+
+/* Nav buttons */
+.nav button {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  background: none;
+  border: none;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+
+.nav button:hover {
+  background: #334155;
+}
+
+/* Main */
+.main {
+  flex: 1;
+}
+
+.content {
+  padding: 20px 40px;
+  overflow-y: auto;
+}
+
+/* Sections */
+.section {
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 20px;
+  border-bottom: 2px solid black;
+  cursor: pointer;
+  padding-bottom: 5px;
+}
+
+.sub {
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
+/* Buttons */
+button {
+  margin: 10px 10px 10px 0;
+  padding: 10px 15px;
+}
+
+button:disabled {
+  opacity: 0.85;              /* clearer disabled state */
+  cursor: not-allowed;
+}
+
+/* Images */
+.future-img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.caption {
+  font-size: 13px;
+  margin-top: 5px;
+  color: #555;
+}
+
+.note {
+  margin-top: 8px;
+  font-size: 15px;
+}
+
+/* Image Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9998;
+}
+
+.modal img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+/* Utility */
+.hidden {
+  display: none;
+}
+
+/* ================= MAP MODAL (FIXED) ================= */
+
+/* FULLSCREEN overlay */
+.map-modal {
+  position: fixed;              /* CRITICAL FIX */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0,0,0,0.7);
+
+  display: none;                /* hidden by default */
+  align-items: center;
+  justify-content: center;
+
+  z-index: 9999;                /* above everything */
+}
+
+/* Active state */
+.map-modal.active {
+  display: flex;
+}
+
+/* Close (X) */
+.map-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+/* Ensure map fills container properly */
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Fix container so map doesn't clip */
+.map-container {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 8px;
+  overflow: hidden; /* prevents weird overflow issues */
+}
+
+/* Wrap map for proper positioning */
+.map-container #map {
+  flex: 1;
+}
+
+/* FIXED Zoom Position */
+.leaflet-top.leaflet-left {
+  top: 50% !important;
+  transform: translateY(-50%);
+  left: 12px !important;
+}
+
+/* Bottom buttons */
+.map-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.map-actions button {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+#locationText {
+  white-space: pre-line;
+}
+
+/* Container */
+.map-search {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+/* Wrapper now holds BOTH input + button */
+.search-wrapper {
+  position: relative;
+  width: 70%;
+  display: flex;
+  align-items: center;   /* 🔥 keeps same line */
+}
+
+/* Input */
+.search-wrapper input {
+  flex: 1;
+  height: 40px;
+  padding: 0 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-right: none;
+  outline: none;
+}
+
+/* Button */
+.search-wrapper button {
+  height: 40px;
+  padding: 0 16px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  background: #f8f8f8;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dropdown */
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+/* Items */
+.search-item {
+  padding: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.search-item:hover {
+  background: #f0f0f0;
+}

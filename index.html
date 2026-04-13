@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carbon Tracer</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Leaflet CSS (MUST be in head) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+
+  <!-- Header (Global) -->
+  <div class="header">Carbon Tracer</div>
+
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="nav">
+        <button onclick="showTab('home')">HOME</button>
+        <button onclick="showTab('about')">ABOUT</button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+      <div class="content">
+
+        <!-- HOME -->
+        <div id="home">
+          <div class="section">
+            <div class="title" onclick="toggle(this)">1.0 Location</div>
+            <div class="sub">
+              <button onclick="openMap()">Select Location</button>
+              <button id="proceedBtn" onclick="generateReport()" disabled>Generate Report</button>
+              <p id="locationText">No location selected.</p>
+            </div>
+          </div>
+
+          <div id="report" class="hidden">
+            <div class="section">
+              <div class="title" onclick="toggle(this)">2.0 Report</div>
+
+              <div class="sub">
+
+                <div class="section">
+                  <div class="title" onclick="toggle(this)">2.1 Analysis</div>
+                  <div class="sub" id="analysis"></div>
+                </div>
+
+                <div class="section">
+                  <div class="title" onclick="toggle(this)">2.2 Recommendation</div>
+                  <div class="sub" id="recommend"></div>
+                </div>
+
+                <div class="section">
+                  <div class="title" onclick="toggle(this)">2.3 Future Scenario</div>
+                  <div class="sub">
+
+                    <div class="section">
+                      <div class="title" onclick="toggle(this)">2.3.1 Positive Future</div>
+                      <div class="sub">
+                        <img class="future-img" src="https://via.placeholder.com/600x300?text=Positive+Future" onclick="zoom(this.src)">
+                        <div class="caption">A sustainable and eco-friendly outcome</div>
+                        <div class="note">Reduced emissions, greener infrastructure, and improved quality of life.</div>
+                      </div>
+                    </div>
+
+                    <div class="section">
+                      <div class="title" onclick="toggle(this)">2.3.2 Negative Future</div>
+                      <div class="sub">
+                        <img class="future-img" src="https://via.placeholder.com/600x300?text=Negative+Future" onclick="zoom(this.src)">
+                        <div class="caption">An unsustainable environmental trajectory</div>
+                        <div class="note">Increased pollution, ecological damage, and declining living conditions.</div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ABOUT -->
+        <div id="about" class="hidden">
+          <div class="section">
+            <div class="title" onclick="toggle(this)">1.0 About</div>
+            <div class="sub" id="aboutText">Loading...</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Image Modal -->
+  <div id="modal" class="modal" onclick="closeModal()">
+    <img id="modalImg">
+  </div>
+
+  <div id="mapModal" class="map-modal">
+
+    <!-- Close (X) -->
+    <div class="map-close" onclick="closeMap()">✕</div>
+
+    <div class="map-container">
+      <div class="map-search">
+      <div class="search-wrapper">
+        <input type="text" id="searchInput" placeholder="Search location...">
+        <div id="searchResults" class="search-results"></div>
+      </div>
+      <button onclick="searchLocation()">Search</button>
+    </div>
+    
+      <div id="map"></div>
+
+      <div class="map-actions">
+        <button onclick="confirmLocation()">Confirm</button>
+        <button onclick="cancelSelection()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leaflet JS (BEFORE your script) -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <script src="script.js"></script>
+</body>
+</html>
