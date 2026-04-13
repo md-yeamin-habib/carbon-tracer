@@ -101,9 +101,12 @@ app.get("/reverse-geocode", async (req, res) => {
         }
       }
     );
-
+    if (!response.ok) {
+      console.error("Nominatim error:", response.status);
+      return res.json({ name: "Unknown Location" });
+    }
     const text = await response.text();
-
+    console.log("Raw text : ", text);
     let data;
     try {
       data = JSON.parse(text);
