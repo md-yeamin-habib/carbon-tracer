@@ -1,7 +1,7 @@
 // ================= INIT =================
 document.addEventListener("DOMContentLoaded", () => {
 
-  const API_BASE = "http://localhost:3000";
+  const API_BASE = "https://carbon-tracer.onrender.com";
 
   // ================= TAB NAVIGATION =================
   window.showTab = function(tab) {
