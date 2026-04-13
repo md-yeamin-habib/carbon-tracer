@@ -11,6 +11,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/", (req, res) => {
+  res.send("CarbonTracer API is running 🚀");
+});
+
 // ================= ANALYZE =================
 app.get("/analyze", (req, res) => {
   const { lat, lng } = req.query;
