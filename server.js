@@ -106,7 +106,7 @@ app.get("/reverse-geocode", async (req, res) => {
       return res.json({ name: "Unknown Location" });
     }
     const text = await response.text();
-
+    console.log("Raw Response : ", text);
     let data;
     try {
       data = JSON.parse(text);
